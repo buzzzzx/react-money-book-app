@@ -1,6 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import PriceList from "./components/PriceList";
+
+const items = [
+  {
+    id: 0,
+    category: {
+      id: 0,
+      name: "旅游",
+      type: "outcome",
+    },
+    title: "去南京旅游",
+    price: 2000,
+    date: "2020-05-17",
+  },
+  {
+    id: 1,
+    category: {
+      id: 1,
+      name: "购物",
+      type: "outcome",
+    },
+    title: "购买 MX Master3",
+    price: 899,
+    date: "2020-06-30",
+  },
+];
 
 function App() {
   return (
@@ -19,6 +46,11 @@ function App() {
           Learn React
         </a>
       </header>
+      <PriceList
+        items={items}
+        onModifyItem={(item) => alert(item.id)}
+        onDeleteItem={(item) => alert(item.id)}
+      />
     </div>
   );
 }
