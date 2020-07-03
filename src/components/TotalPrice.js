@@ -2,10 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const TotalPrice = ({ totalIncome, totalOutcome }) => (
-  <p>
-    <span className="mr-3">收入: {totalIncome}</span>
-    <span className="mr-3">支出: {totalOutcome}</span>
-  </p>
+  <div className="row my-4">
+    <div className="col">
+      收入: <span className="font-weight-bold">{totalIncome}</span>
+    </div>
+    <div className="col">
+      支出: <span className="font-weight-bold">{totalOutcome}</span>
+    </div>
+  </div>
 );
 
 TotalPrice.propTypes = {
