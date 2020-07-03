@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import PropTypes from "prop-types";
 import { padLeft, range } from "../utility";
 
@@ -7,6 +7,25 @@ class MonthPicker extends Component {
     isOpen: false,
     selectedYear: this.props.year,
     selectedMonth: this.props.month,
+  };
+
+  dropdownRef = createRef();
+
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
+  }
+
+  handleClickOutside = (event) => {
+    if (this.dropdownRef && !this.dropdownRef.current.contains(event.target)) {
+      // means click outside
+      this.setState({
+        isOpen: false,
+      });
+    }
   };
 
   toggleDropdown = (event) => {
@@ -42,8 +61,11 @@ class MonthPicker extends Component {
     const monthRange = range(12, 1);
 
     return (
-      <div className="dropdown my-4 month-picker-component">
-        <h4>选择时间</h4>
+      <div
+        className="dropdown my-4 month-picker-component"
+        ref={this.dropdownRef}
+      >
+        <span className="mr-2">选择时间</span>
         <button
           className="btn btn-lg btn-secondary dropdown-toggle"
           onClick={this.toggleDropdown}
