@@ -3,6 +3,9 @@ import logo from "./logo.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import PriceList from "./components/PriceList";
+import ViewTab from "./components/ViewTab";
+import { LIST_VIEW } from "./utility";
+import TotalNumbers from "./components/TotalNumbers";
 
 const items = [
   {
@@ -36,7 +39,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        {/* <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
@@ -46,8 +49,13 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a> */}
+        <TotalNumbers totalIncome={2000} totalOutcome={3700} />
       </header>
+      <ViewTab
+        activeTab={LIST_VIEW}
+        onTabChange={(view) => console.log(view)}
+      />
       <PriceList
         items={items}
         onModifyItem={(item) => alert(item.id)}
