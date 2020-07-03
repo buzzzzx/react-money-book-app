@@ -6,6 +6,7 @@ import PriceList from "./components/PriceList";
 import ViewTab from "./components/ViewTab";
 import { LIST_VIEW } from "./utility";
 import TotalNumbers from "./components/TotalNumbers";
+import MonthPicker from "./components/MonthPicker";
 
 const items = [
   {
@@ -18,7 +19,7 @@ const items = [
     },
     title: "去南京旅游",
     price: 2000,
-    date: "2020-05-17",
+    date: "2020-06-17",
   },
   {
     id: 1,
@@ -50,6 +51,13 @@ function App() {
         >
           Learn React
         </a> */}
+        <MonthPicker
+          year={2020}
+          month={6}
+          onChange={(year, month) => {
+            console.log(year, month);
+          }}
+        />
         <TotalNumbers totalIncome={2000} totalOutcome={3700} />
       </header>
       <ViewTab
