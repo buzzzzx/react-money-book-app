@@ -5,8 +5,9 @@ import "./App.css";
 import PriceList from "./components/PriceList";
 import ViewTab from "./components/ViewTab";
 import { LIST_VIEW } from "./utility";
-import TotalNumbers from "./components/TotalNumbers";
+import TotalPrice from "./components/TotalNumbers";
 import MonthPicker from "./components/MonthPicker";
+import CreateBtn from "./components/CreateBtn";
 
 const items = [
   {
@@ -40,17 +41,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        {/* <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
         <MonthPicker
           year={2020}
           month={6}
@@ -58,12 +48,13 @@ function App() {
             console.log(year, month);
           }}
         />
-        <TotalNumbers totalIncome={2000} totalOutcome={3700} />
+        <TotalPrice totalIncome={2000} totalOutcome={3700} />
       </header>
       <ViewTab
         activeTab={LIST_VIEW}
         onTabChange={(view) => console.log(view)}
       />
+      <CreateBtn onClick={() => console.log("Create a new record")} />
       <PriceList
         items={items}
         onModifyItem={(item) => alert(item.id)}

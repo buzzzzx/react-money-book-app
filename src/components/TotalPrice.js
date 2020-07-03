@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const TotalNumbers = ({ totalIncome, totalOutcome }) => (
+const TotalPrice = ({ totalIncome, totalOutcome }) => (
   <p>
     <span className="mr-3">收入: {totalIncome}</span>
     <span className="mr-3">支出: {totalOutcome}</span>
   </p>
 );
 
-TotalNumbers.propTypes = {
+TotalPrice.propTypes = {
   totalIncome: PropTypes.number.isRequired,
   totalOutcome: PropTypes.number.isRequired,
 };
 
-export default TotalNumbers;
+export default TotalPrice;
