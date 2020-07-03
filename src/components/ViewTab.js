@@ -1,6 +1,6 @@
 import React from "react";
 import Ionicon from "react-ionicons";
-import PropsType from "prop-types";
+import PropTypes from "prop-types";
 import { LIST_VIEW, CHART_VIEW } from "../utility";
 
 const generateLinkClass = (current, view) => {
@@ -49,8 +49,8 @@ const ViewTab = ({ activeTab, onTabChange }) => (
 );
 
 ViewTab.propTypes = {
-  activeTab: PropsType.string.isRequired,
-  onTabChange: PropsType.func.isRequired,
+  activeTab: PropTypes.string.isRequired,
+  onTabChange: PropTypes.func.isRequired,
 };
 
 export default ViewTab;

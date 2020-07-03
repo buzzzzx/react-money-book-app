@@ -1,5 +1,5 @@
 import React from "react";
-import PropsType from "prop-types";
+import PropTypes from "prop-types";
 
 const TotalNumbers = ({ totalIncome, totalOutcome }) => (
   <p>
@@ -9,8 +9,8 @@ const TotalNumbers = ({ totalIncome, totalOutcome }) => (
 );
 
 TotalNumbers.propTypes = {
-  totalIncome: PropsType.number.isRequired,
-  totalOutcome: PropsType.number.isRequired,
+  totalIncome: PropTypes.number.isRequired,
+  totalOutcome: PropTypes.number.isRequired,
 };
 
 export default TotalNumbers;
