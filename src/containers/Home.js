@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import logo from "../logo.svg";
 import PriceList from "../components/PriceList";
 import ViewTab from "../components/ViewTab";
-import { LIST_VIEW, parseToYearAndMonth } from "../utility";
+import {
+  LIST_VIEW,
+  parseToYearAndMonth,
+  CHART_VIEW,
+  padLeft,
+} from "../utility";
 import TotalPrice from "../components/TotalPrice";
 import MonthPicker from "../components/MonthPicker";
 import CreateBtn from "../components/CreateBtn";
@@ -20,9 +25,15 @@ const category = {
     type: "outcome",
     iconName: "ios-card-outline",
   },
+  2: {
+    id: 2,
+    name: "理财",
+    type: "income",
+    iconName: "ios-basket-outline",
+  },
 };
 
-const items = [
+const testItems = [
   {
     id: 0,
     cid: 0,
@@ -39,19 +50,73 @@ const items = [
   },
 ];
 
+const newItem = {
+  id: 2,
+  cid: 2,
+  title: "基金收入 300",
+  price: 300,
+  date: "2020-07-05",
+};
+
 class Home extends Component {
   state = {
     currentDate: parseToYearAndMonth(),
-    items,
+    items: testItems,
     tabView: LIST_VIEW,
+  };
+
+  changeView = (view) => {
+    this.setState({
+      tabView: view,
+    });
+  };
+
+  changeDate = (year, month) => {
+    this.setState({
+      currentDate: { year, month },
+    });
+  };
+
+  // FIXME: for now just add a prepared item directly
+  createItem = () => {
+    this.setState({
+      items: [newItem, ...this.state.items],
+    });
+  };
+
+  // FIXME: for now just update item's title with prepared title
+  modifyItem = (modifiedItem) => {
+    const newItems = this.state.items.map((item) => {
+      if (item.id === modifiedItem.id) {
+        return { ...item, title: "更新后的标题" };
+      } else {
+        return item;
+      }
+    });
+    this.setState({
+      items: newItems,
+    });
+  };
+
+  deleteItem = (deletedItem) => {
+    const filteredItems = this.state.items.filter(
+      (item) => item.id !== deletedItem.id
+    );
+    this.setState({
+      items: filteredItems,
+    });
   };
 
   render() {
     const { items, tabView, currentDate } = this.state;
-    const itemsWithCategory = items.map((item) => {
-      item.category = category[item.cid];
-      return item;
-    });
+    const itemsWithCategory = items
+      .map((item) => {
+        item.category = category[item.cid];
+        return item;
+      })
+      .filter((item) =>
+        item.date.includes(`${currentDate.year}-${padLeft(currentDate.month)}`)
+      );
 
     let totalIncome = 0;
     let totalOutcome = 0;
@@ -73,9 +138,7 @@ class Home extends Component {
                 <MonthPicker
                   year={currentDate.year}
                   month={currentDate.month}
-                  onChange={(year, month) => {
-                    console.log(year, month);
-                  }}
+                  onChange={this.changeDate}
                 />
               </div>
               <div className="col">
@@ -87,16 +150,16 @@ class Home extends Component {
             </div>
           </div>
         </header>
-        <ViewTab
-          activeTab={tabView}
-          onTabChange={(view) => console.log(view)}
-        />
-        <CreateBtn onClick={() => console.log("Create a new record")} />
-        <PriceList
-          items={items}
-          onModifyItem={(item) => alert(item.id)}
-          onDeleteItem={(item) => alert(item.id)}
-        />
+        <CreateBtn onClick={this.createItem} />
+        <ViewTab activeTab={tabView} onTabChange={this.changeView} />
+        {tabView === LIST_VIEW && (
+          <PriceList
+            items={itemsWithCategory}
+            onModifyItem={this.modifyItem}
+            onDeleteItem={this.deleteItem}
+          />
+        )}
+        {tabView === CHART_VIEW && <h2>Hello, this is chart view.</h2>}
       </>
     );
   }

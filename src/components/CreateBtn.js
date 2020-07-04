@@ -6,7 +6,7 @@ const CreateBtn = ({ onClick }) => (
   <button
     type="button"
     className="btn btn-primary btn-lg btn-block my-4"
-    onClick={onClick}
+    onClick={(event) => onClick()}
   >
     <Ionicon
       className="rounded-circle mr-2"
