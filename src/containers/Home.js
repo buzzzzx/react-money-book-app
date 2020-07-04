@@ -12,7 +12,7 @@ import TotalPrice from "../components/TotalPrice";
 import MonthPicker from "../components/MonthPicker";
 import CreateBtn from "../components/CreateBtn";
 
-const category = {
+export const category = {
   0: {
     id: 0,
     name: "旅游",
@@ -33,7 +33,7 @@ const category = {
   },
 };
 
-const testItems = [
+export const testItems = [
   {
     id: 0,
     cid: 0,
@@ -50,7 +50,7 @@ const testItems = [
   },
 ];
 
-const newItem = {
+export const newItem = {
   id: 2,
   cid: 2,
   title: "基金收入 300",
