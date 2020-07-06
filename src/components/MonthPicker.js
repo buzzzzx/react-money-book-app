@@ -12,11 +12,11 @@ class MonthPicker extends Component {
   dropdownRef = createRef();
 
   componentDidMount() {
-    document.addEventListener("mousedown", this.handleClickOutside);
+    document.addEventListener("click", this.handleClickOutside);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClickOutside);
+    document.removeEventListener("click", this.handleClickOutside);
   }
 
   handleClickOutside = (event) => {
@@ -75,7 +75,7 @@ class MonthPicker extends Component {
         {isOpen && (
           <div className="dropdown-menu" style={{ display: "block" }}>
             <div className="row">
-              <div className="col border-right">
+              <div className="col border-right years-range">
                 {yearRange.map((yearNum, index) => (
                   <a
                     href="#"
@@ -87,7 +87,7 @@ class MonthPicker extends Component {
                   </a>
                 ))}
               </div>
-              <div className="col">
+              <div className="col months-range">
                 {monthRange.map((monthNum, index) => (
                   <a
                     href="#"
