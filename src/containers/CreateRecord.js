@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CategorySelect from "../components/CategorySelect";
-import { category } from "./Home";
+import PriceForm from "../components/PriceForm";
+import { testItems } from "../containers/Home";
 
 const categories = [
   {
@@ -26,7 +27,11 @@ const categories = [
 class CreateRecord extends Component {
   render() {
     return this.props.id ? (
-      <h1>This is editing page, id is {this.props.id}</h1>
+      <PriceForm
+        onFormSubmit={() => {}}
+        onCancelSubmit={() => {}}
+        item={testItems[this.props.id - 1]}
+      />
     ) : (
       <>
         <h1>This is creating page.</h1>
@@ -37,6 +42,7 @@ class CreateRecord extends Component {
           }
           selectedCategory={categories[0]}
         />
+        <PriceForm onFormSubmit={() => {}} onCancelSubmit={() => {}} />
       </>
     );
   }

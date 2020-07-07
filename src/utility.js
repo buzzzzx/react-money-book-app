@@ -2,6 +2,11 @@ export const LIST_VIEW = "list";
 export const CHART_VIEW = "chart";
 export const TYPE_INCOME = "income";
 export const TYPE_OUTCOME = "outcome";
+export const testItem = {
+  title: "buy a phone",
+  price: 4000,
+  date: "2020-07-07",
+};
 
 export const padLeft = (num) => {
   return num < 10 ? "0" + num : num;

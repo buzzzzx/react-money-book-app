@@ -35,14 +35,14 @@ export const category = {
 
 export const testItems = [
   {
-    id: 0,
+    id: 1,
     cid: 0,
     title: "去南京旅游",
     price: 2000,
     date: "2020-06-17",
   },
   {
-    id: 1,
+    id: 2,
     cid: 1,
     title: "购买 MX Master3",
     price: 899,
@@ -51,7 +51,7 @@ export const testItems = [
 ];
 
 export const newItem = {
-  id: 2,
+  id: 3,
   cid: 2,
   title: "基金收入 300",
   price: 300,
