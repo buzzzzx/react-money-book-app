@@ -2,27 +2,7 @@ import React, { Component } from "react";
 import CategorySelect from "../components/CategorySelect";
 import PriceForm from "../components/PriceForm";
 import { testItems } from "../containers/Home";
-
-const categories = [
-  {
-    id: 0,
-    name: "旅游",
-    type: "outcome",
-    iconName: "ios-plane-outline",
-  },
-  {
-    id: 1,
-    name: "购物",
-    type: "outcome",
-    iconName: "ios-card-outline",
-  },
-  {
-    id: 2,
-    name: "理财",
-    type: "income",
-    iconName: "ios-basket-outline",
-  },
-];
+import { testCategories } from "../utility";
 
 class CreateRecord extends Component {
   render() {
@@ -36,11 +16,11 @@ class CreateRecord extends Component {
       <>
         <h1>This is creating page.</h1>
         <CategorySelect
-          categories={categories}
+          categories={testCategories}
           onSelectCategory={(category) =>
             console.log(category.id, category.name)
           }
-          selectedCategory={categories[0]}
+          selectedCategory={testCategories[0]}
         />
         <PriceForm onFormSubmit={() => {}} onCancelSubmit={() => {}} />
       </>

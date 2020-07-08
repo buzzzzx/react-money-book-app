@@ -3,21 +3,15 @@ import Ionicon from "react-ionicons";
 
 class CategorySelect extends Component {
   state = {
-    selectedCategory:
+    selectedCategoryId:
       this.props.selectedCategory && this.props.selectedCategory.id,
-  };
-
-  generateActiveClass = (current, target) => {
-    return current === target
-      ? "category-item col-3 active"
-      : "category-item col-3";
   };
 
   handlecategorySelect = (event, categroy) => {
     event.preventDefault();
 
     this.setState({
-      selectedCategory: categroy.id,
+      selectedCategoryId: categroy.id,
     });
 
     this.props.onSelectCategory(categroy);
@@ -25,29 +19,38 @@ class CategorySelect extends Component {
 
   render() {
     const { categories } = this.props;
-    const { selectedCategory } = this.state;
+    const { selectedCategoryId } = this.state;
 
     return (
       <div className="categroy-select-component">
         <div className="row">
-          {categories.map((category, index) => (
-            <div
-              className={this.generateActiveClass(
-                category.id,
-                selectedCategory
-              )}
-              href="#"
-              key={index}
-              onClick={(event) => this.handlecategorySelect(event, category)}
-            >
-              <Ionicon
-                className="rounded-circle"
-                fontSize="55px"
-                color="#555"
-                icon={category.iconName}
-              />
-            </div>
-          ))}
+          {categories.map((category, index) => {
+            const iconColor =
+              category.id === selectedCategoryId ? "#fff" : "#555";
+            const backColor =
+              category.id === selectedCategoryId ? "#347eff" : "#efefef";
+            const activeClassName =
+              category.id === selectedCategoryId
+                ? "category-item col-3 active"
+                : "category-item col-3";
+            return (
+              <div
+                className={activeClassName}
+                role="button"
+                href="#"
+                key={index}
+                onClick={(event) => this.handlecategorySelect(event, category)}
+              >
+                <Ionicon
+                  className="rounded-circle"
+                  style={{ backgroundColor: backColor, padding: "5px" }}
+                  fontSize="50px"
+                  color={iconColor}
+                  icon={category.iconName}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     );

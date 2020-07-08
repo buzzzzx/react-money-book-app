@@ -64,57 +64,41 @@ class PriceForm extends Component {
     const { onCancelSubmit } = this.props;
 
     return (
-      <form
-        onSubmit={(event) => this.submitForm(event)}
-        className="ml-4"
-        noValidate
-      >
-        <div className="form-group row">
-          <label className="col-md-2 col-form-label" htmlFor="title">
-            标题*:
-          </label>
-          <div className="col-md-7">
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              placeholder="请输入标题"
-              defaultValue={title}
-              ref={this.titleInput}
-            />
-          </div>
+      <form onSubmit={(event) => this.submitForm(event)} noValidate>
+        <div className="form-group">
+          <label htmlFor="title">标题*:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            placeholder="请输入标题"
+            defaultValue={title}
+            ref={this.titleInput}
+          />
         </div>
-        <div className="form-group row">
-          <label className="col-md-2 col-form-label" htmlFor="price">
-            金额*:
-          </label>
-          <div className="col-md-7">
-            <input
-              type="number"
-              className="form-control"
-              name="price"
-              id="price"
-              placeholder="请输入金额"
-              defaultValue={price}
-              ref={this.priceInput}
-            />
-          </div>
+        <div className="form-group">
+          <label htmlFor="price">金额*:</label>
+          <input
+            type="number"
+            className="form-control"
+            name="price"
+            id="price"
+            placeholder="请输入金额"
+            defaultValue={price}
+            ref={this.priceInput}
+          />
         </div>
-        <div className="form-group row">
-          <label className="col-md-2 col-form-label" htmlFor="date">
-            日期*:
-          </label>
-          <div className="col-md-7">
-            <input
-              type="date"
-              className="form-control"
-              name="date"
-              id="date"
-              placeholder="请输入日期"
-              defaultValue={date}
-              ref={this.dateInput}
-            />
-          </div>
+        <div className="form-group">
+          <label htmlFor="date">日期*:</label>
+          <input
+            type="date"
+            className="form-control"
+            name="date"
+            id="date"
+            placeholder="请输入日期"
+            defaultValue={date}
+            ref={this.dateInput}
+          />
         </div>
         <button type="submit" className="btn btn-primary mr-4">
           提交
