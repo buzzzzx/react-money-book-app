@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Ionicon from "react-ionicons";
+
 import logo from "../logo.svg";
 import PriceList from "../components/PriceList";
 import ViewTab from "../components/ViewTab";
@@ -11,6 +13,7 @@ import {
 import TotalPrice from "../components/TotalPrice";
 import MonthPicker from "../components/MonthPicker";
 import CreateBtn from "../components/CreateBtn";
+import { Tabs, Tab } from "../components/Tabs";
 
 export const category = {
   0: {
@@ -58,16 +61,18 @@ export const newItem = {
   date: "2020-07-05",
 };
 
+const tabViews = [LIST_VIEW, CHART_VIEW];
+
 class Home extends Component {
   state = {
     currentDate: parseToYearAndMonth(),
     items: testItems,
-    tabView: LIST_VIEW,
+    tabView: tabViews[0],
   };
 
-  changeView = (view) => {
+  changeView = (index) => {
     this.setState({
-      tabView: view,
+      tabView: tabViews[index],
     });
   };
 
@@ -151,7 +156,7 @@ class Home extends Component {
           </div>
         </header>
         <CreateBtn onClick={this.createItem} />
-        <ViewTab activeTab={tabView} onTabChange={this.changeView} />
+        <ViewTab activeIndex={0} onTabChange={this.changeView} />
         {tabView === LIST_VIEW && (
           <PriceList
             items={itemsWithCategory}
