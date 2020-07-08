@@ -36,6 +36,7 @@ class CategorySelect extends Component {
             return (
               <div
                 className={activeClassName}
+                style={{ textAlign: "center" }}
                 role="button"
                 href="#"
                 key={index}
@@ -48,6 +49,7 @@ class CategorySelect extends Component {
                   color={iconColor}
                   icon={category.iconName}
                 />
+                <p>{category.name}</p>
               </div>
             );
           })}
