@@ -8,11 +8,13 @@ import CreateRecord from "./containers/CreateRecord";
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Home path="/" />
-        <CreateRecord path="create" />
-        <CreateRecord path="edit/:id" />
-      </Router>
+      <div class="container pb-5">
+        <Router>
+          <Home path="/" />
+          <CreateRecord path="create" />
+          <CreateRecord path="edit/:id" />
+        </Router>
+      </div>
     </div>
   );
 }
