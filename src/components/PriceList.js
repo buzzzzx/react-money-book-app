@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "@reach/router";
 import Ionicon from "react-ionicons";
 import PropTypes from "prop-types";
 
-const PriceList = ({ items, onModifyItem, onDeleteItem }) => (
+const PriceList = ({ items, onDeleteItem }) => (
   <ul className="list-group list-group-flush">
     {items.map((item) => (
       <li
@@ -24,7 +25,7 @@ const PriceList = ({ items, onModifyItem, onDeleteItem }) => (
           {item.price} 元
         </span>
         <span className="col-2">{item.date}</span>
-        <a className="col-1" onClick={() => onModifyItem(item)}>
+        <Link to={`edit/${item.id}`} className="col-1">
           <Ionicon
             className="rounded-circle"
             fontSize="30px"
@@ -32,7 +33,7 @@ const PriceList = ({ items, onModifyItem, onDeleteItem }) => (
             color="#fff"
             icon="ios-create-outline"
           />
-        </a>
+        </Link>
         <a className="col-1" onClick={() => onDeleteItem(item)}>
           <Ionicon
             className="rounded-circle"

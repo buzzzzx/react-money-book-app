@@ -78,3 +78,10 @@ export const parseToYearAndMonth = (str) => {
     month: date.getMonth() + 1,
   };
 };
+
+export const flattenData = (arr) => {
+  return arr.reduce((acc, curr) => {
+    acc[curr.id] = curr;
+    return acc;
+  }, {});
+};

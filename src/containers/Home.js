@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Ionicon from "react-ionicons";
 
 import logo from "../logo.svg";
 import PriceList from "../components/PriceList";
@@ -13,45 +12,7 @@ import {
 import TotalPrice from "../components/TotalPrice";
 import MonthPicker from "../components/MonthPicker";
 import CreateBtn from "../components/CreateBtn";
-import { Tabs, Tab } from "../components/Tabs";
-
-export const category = {
-  0: {
-    id: 0,
-    name: "旅游",
-    type: "outcome",
-    iconName: "ios-plane-outline",
-  },
-  1: {
-    id: 1,
-    name: "购物",
-    type: "outcome",
-    iconName: "ios-card-outline",
-  },
-  2: {
-    id: 2,
-    name: "理财",
-    type: "income",
-    iconName: "ios-basket-outline",
-  },
-};
-
-export const testItems = [
-  {
-    id: 1,
-    cid: 0,
-    title: "去南京旅游",
-    price: 2000,
-    date: "2020-06-17",
-  },
-  {
-    id: 2,
-    cid: 1,
-    title: "购买 MX Master3",
-    price: 899,
-    date: "2020-06-30",
-  },
-];
+import withContext from "../withContext";
 
 export const newItem = {
   id: 3,
@@ -66,7 +27,6 @@ const tabViews = [LIST_VIEW, CHART_VIEW];
 class Home extends Component {
   state = {
     currentDate: parseToYearAndMonth(),
-    items: testItems,
     tabView: tabViews[0],
   };
 
@@ -104,20 +64,19 @@ class Home extends Component {
   };
 
   deleteItem = (deletedItem) => {
-    const filteredItems = this.state.items.filter(
-      (item) => item.id !== deletedItem.id
-    );
-    this.setState({
-      items: filteredItems,
-    });
+    this.props.actions.deleteItem(deletedItem);
   };
 
   render() {
-    const { items, tabView, currentDate } = this.state;
-    const itemsWithCategory = items
-      .map((item) => {
-        item.category = category[item.cid];
-        return item;
+    const { data } = this.props;
+    const { items, categories } = data;
+    console.log(data);
+
+    const { tabView, currentDate } = this.state;
+    const itemsWithCategory = Object.keys(items)
+      .map((id) => {
+        items[id].category = categories[items[id].cid];
+        return items[id];
       })
       .filter((item) =>
         item.date.includes(`${currentDate.year}-${padLeft(currentDate.month)}`)
@@ -157,17 +116,21 @@ class Home extends Component {
         </header>
         <CreateBtn onClick={this.createItem} />
         <ViewTab activeIndex={0} onTabChange={this.changeView} />
-        {tabView === LIST_VIEW && (
-          <PriceList
-            items={itemsWithCategory}
-            onModifyItem={this.modifyItem}
-            onDeleteItem={this.deleteItem}
-          />
-        )}
+        {tabView === LIST_VIEW &&
+          (itemsWithCategory.length > 0 ? (
+            <PriceList
+              items={itemsWithCategory}
+              onDeleteItem={this.deleteItem}
+            />
+          ) : (
+            <div className="alert alert-light text-center no-record">
+              您还没有任何记账记录
+            </div>
+          ))}
         {tabView === CHART_VIEW && <h2>Hello, this is chart view.</h2>}
       </>
     );
   }
 }
 
-export default Home;
+export default withContext(Home);

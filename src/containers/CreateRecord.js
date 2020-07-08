@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import CategoryViewTab from "../components/CategoryViewTab";
 import CategorySelect from "../components/CategorySelect";
 import PriceForm from "../components/PriceForm";
-import { testItems } from "../containers/Home";
 import { testCategories, TYPE_INCOME, TYPE_OUTCOME } from "../utility";
+import withContext from "../withContext";
 
 const tabViews = [TYPE_OUTCOME, TYPE_INCOME];
 
@@ -20,6 +20,9 @@ class CreateRecord extends Component {
   };
 
   render() {
+    const { data } = this.props;
+    console.log(data);
+
     const { tabView } = this.state;
     const filterCategories = testCategories.filter((category) => {
       return category.type === tabView;
@@ -41,4 +44,4 @@ class CreateRecord extends Component {
   }
 }
 
-export default CreateRecord;
+export default withContext(CreateRecord);
