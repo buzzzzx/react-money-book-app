@@ -50,7 +50,6 @@ const PriceList = ({ items, onDeleteItem }) => (
 
 PriceList.propTypes = {
   items: PropTypes.array.isRequired,
-  onModifyItem: PropTypes.func.isRequired,
   onDeleteItem: PropTypes.func.isRequired,
 };
 
