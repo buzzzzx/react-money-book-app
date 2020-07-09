@@ -43,24 +43,6 @@ class Home extends Component {
     });
   };
 
-  createItem = () => {
-    navigate("create");
-  };
-
-  // FIXME: for now just update item's title with prepared title
-  modifyItem = (modifiedItem) => {
-    const newItems = this.state.items.map((item) => {
-      if (item.id === modifiedItem.id) {
-        return { ...item, title: "更新后的标题" };
-      } else {
-        return item;
-      }
-    });
-    this.setState({
-      items: newItems,
-    });
-  };
-
   deleteItem = (deletedItem) => {
     this.props.actions.deleteItem(deletedItem);
   };
@@ -112,7 +94,7 @@ class Home extends Component {
             </div>
           </div>
         </header>
-        <CreateBtn onClick={this.createItem} />
+        <CreateBtn />
         <ViewTab activeIndex={0} onTabChange={this.changeView} />
         {tabView === LIST_VIEW &&
           (itemsWithCategory.length > 0 ? (

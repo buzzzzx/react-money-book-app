@@ -40,6 +40,17 @@ class App extends Component {
         items: { ...this.state.items, [newId]: newItem },
       });
     },
+    updateItem: (item, categoryId) => {
+      const modifiedItem = {
+        ...item,
+        cid: categoryId,
+        timestamp: new Date(item.date).getTime(),
+      };
+
+      this.setState({
+        items: { ...this.state.items, [modifiedItem.id]: modifiedItem },
+      });
+    },
   };
 
   render() {

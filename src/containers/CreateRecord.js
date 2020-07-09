@@ -10,9 +10,14 @@ import withContext from "../withContext";
 const tabViews = [TYPE_OUTCOME, TYPE_INCOME];
 
 class CreateRecord extends Component {
+  editItem = this.props.id && this.props.data.items[this.props.id];
   state = {
-    tabView: tabViews[0],
-    selectedCategory: null,
+    tabView: this.editItem
+      ? this.props.data.categories[this.editItem.cid].type
+      : tabViews[0],
+    selectedCategory: this.editItem
+      ? this.props.data.categories[this.editItem.cid]
+      : null,
     validationPassed: true,
   };
 
@@ -46,13 +51,16 @@ class CreateRecord extends Component {
       this.props.actions.createItem(data, this.state.selectedCategory.id);
     } else {
       // udpdate data
+      this.props.actions.updateItem(data, this.state.selectedCategory.id);
     }
     navigate("/");
   };
 
   render() {
     const { data } = this.props;
-    const { categories } = data;
+    const { items, categories } = data;
+
+    const editItem = this.props.id && items[this.props.id];
 
     const { tabView, selectedCategory, validationPassed } = this.state;
     const filterCategories = Object.keys(categories)
@@ -63,12 +71,17 @@ class CreateRecord extends Component {
         return categories[id];
       });
 
+    const tabViewIndex = tabViews.findIndex((text) => text === tabView);
+
     return (
       <div
         className="create-page py-3 px-3 rounded mt-3"
         style={{ background: "#fff" }}
       >
-        <CategoryViewTab activeIndex={0} onTabChange={this.onTabChange} />
+        <CategoryViewTab
+          activeIndex={tabViewIndex}
+          onTabChange={this.onTabChange}
+        />
         <CategorySelect
           categories={filterCategories}
           selectedCategory={selectedCategory}
@@ -77,6 +90,7 @@ class CreateRecord extends Component {
         <PriceForm
           onFormSubmit={this.onFormSubmit}
           onCancelSubmit={this.onCancelSubmit}
+          item={editItem}
         />
         {!validationPassed && (
           <div className="alert alert-danger mt-5" role="alert">
