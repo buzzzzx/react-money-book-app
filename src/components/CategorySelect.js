@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import Ionicon from "react-ionicons";
 
 class CategorySelect extends Component {
-  state = {
-    selectedCategoryId:
-      this.props.selectedCategory && this.props.selectedCategory.id,
-  };
-
   handlecategorySelect = (event, categroy) => {
     event.preventDefault();
 
@@ -19,7 +14,8 @@ class CategorySelect extends Component {
 
   render() {
     const { categories } = this.props;
-    const { selectedCategoryId } = this.state;
+    const selectedCategoryId =
+      this.props.selectedCategory && this.props.selectedCategory.id;
 
     return (
       <div className="categroy-select-component">

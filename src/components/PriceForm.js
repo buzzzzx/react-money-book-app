@@ -6,7 +6,7 @@ class PriceForm extends Component {
   };
 
   state = {
-    validatePass: true,
+    validationPassed: true,
     errorMessage: "",
   };
 
@@ -19,12 +19,12 @@ class PriceForm extends Component {
     if (title && price && date) {
       if (price < 0) {
         this.setState({
-          validatePass: false,
+          validationPassed: false,
           errorMessage: "金额必须大于零",
         });
       } else {
         this.setState({
-          validatePass: true,
+          validationPassed: true,
           errorMessage: "",
         });
 
@@ -32,7 +32,7 @@ class PriceForm extends Component {
       }
     } else {
       this.setState({
-        validatePass: false,
+        validationPassed: false,
         errorMessage: "请输入所有必选项",
       });
     }
@@ -60,7 +60,7 @@ class PriceForm extends Component {
 
   render() {
     const { title, price, date } = this.props.item;
-    const { validatePass, errorMessage } = this.state;
+    const { validationPassed, errorMessage } = this.state;
     const { onCancelSubmit } = this.props;
 
     return (
@@ -106,7 +106,7 @@ class PriceForm extends Component {
         <button className="btn btn-secondary" onClick={onCancelSubmit}>
           取消
         </button>
-        {!validatePass && (
+        {!validationPassed && (
           <div className="alert alert-danger mt-5" role="alert">
             {errorMessage}
           </div>

@@ -13,6 +13,7 @@ import TotalPrice from "../components/TotalPrice";
 import MonthPicker from "../components/MonthPicker";
 import CreateBtn from "../components/CreateBtn";
 import withContext from "../withContext";
+import { navigate } from "@reach/router";
 
 export const newItem = {
   id: 3,
@@ -42,11 +43,8 @@ class Home extends Component {
     });
   };
 
-  // FIXME: for now just add a prepared item directly
   createItem = () => {
-    this.setState({
-      items: [newItem, ...this.state.items],
-    });
+    navigate("create");
   };
 
   // FIXME: for now just update item's title with prepared title

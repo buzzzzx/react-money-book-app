@@ -6,7 +6,7 @@ import "./App.css";
 import Home from "./containers/Home";
 import CreateRecord from "./containers/CreateRecord";
 import { testCategories, testItems } from "./testData";
-import { flattenData } from "./utility";
+import { flattenData, ID, parseToYearAndMonth } from "./utility";
 
 export const AppContext = createContext();
 
@@ -21,6 +21,23 @@ class App extends Component {
       delete this.state.items[item.id];
       this.setState({
         items: this.state.items,
+      });
+    },
+    createItem: (data, categoryId) => {
+      const newId = ID();
+      const date = parseToYearAndMonth(data.date);
+      const monthCategory = `${date.year}-${date.month}`;
+      const timestamp = new Date(data.date).getTime();
+      const newItem = {
+        ...data,
+        id: newId,
+        monthCategory: monthCategory,
+        cid: categoryId,
+        timestamp: timestamp,
+      };
+
+      this.setState({
+        items: { ...this.state.items, [newId]: newItem },
       });
     },
   };

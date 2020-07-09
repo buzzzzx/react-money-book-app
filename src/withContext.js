@@ -3,7 +3,7 @@ import React from "react";
 import { AppContext } from "./App";
 
 const withContext = (WrappedComponent) => {
-  return (props) => {
+  const newComponent = (props) => {
     return (
       <AppContext.Consumer>
         {({ state, actions }) => {
@@ -12,6 +12,7 @@ const withContext = (WrappedComponent) => {
       </AppContext.Consumer>
     );
   };
+  return newComponent;
 };
 
 export default withContext;
