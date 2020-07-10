@@ -1,22 +1,15 @@
 import React, { Component } from "react";
 
 export class Tabs extends Component {
-  state = {
-    activeIndex: this.props.activeIndex,
-  };
-
   changeTab = (event, index) => {
     event.preventDefault();
-    this.setState({
-      activeIndex: index,
-    });
 
     this.props.onTabChange(index);
   };
 
   render() {
-    const { children } = this.props;
-    const { activeIndex } = this.state;
+    const { activeIndex, children } = this.props;
+
     return (
       <ul className="nav nav-tabs nav-fill my-2">
         {React.Children.map(children, (child, index) => {

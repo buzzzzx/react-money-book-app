@@ -21,6 +21,16 @@ class CreateRecord extends Component {
     validationPassed: true,
   };
 
+  componentDidMount() {
+    const id = this.props.id;
+    this.props.actions.getEditData(id).then(({ categories, editItem }) => {
+      this.setState({
+        tabView: editItem ? categories[editItem.cid].type : tabViews[0],
+        selectedCategory: editItem ? categories[editItem.cid] : null,
+      });
+    });
+  }
+
   onTabChange = (index) => {
     this.setState({
       tabView: tabViews[index],
@@ -63,6 +73,7 @@ class CreateRecord extends Component {
     const editItem = this.props.id && items[this.props.id];
 
     const { tabView, selectedCategory, validationPassed } = this.state;
+
     const filterCategories = Object.keys(categories)
       .filter((id) => {
         return categories[id].type === tabView;
@@ -75,7 +86,7 @@ class CreateRecord extends Component {
 
     return (
       <div
-        className="create-page py-3 px-3 rounded mt-3"
+        className="create-page py-5 px-3 rounded"
         style={{ background: "#fff" }}
       >
         <CategoryViewTab

@@ -21,19 +21,15 @@ class App extends Component {
   withLoading = (cb) => {
     return (...args) => {
       this.setState({
-        isLoading: false,
+        isLoading: true,
       });
 
-      cb(...args);
+      return cb(...args);
     };
   };
 
   actions = {
     getInitialData: this.withLoading(async () => {
-      this.setState({
-        isLoading: true,
-      });
-
       const { currentDate } = this.state;
       const getItemsForDateUrl = `/items?monthCategory=${currentDate.year}-${currentDate.month}&_sort=timestamp&_order=desc`;
       const results = await axios.all([
@@ -48,6 +44,31 @@ class App extends Component {
       });
 
       return results;
+    }),
+    getEditData: this.withLoading(async (id) => {
+      const arr = [axios.get("/categories")];
+      if (id) {
+        arr.push(axios.get(`/items/${id}`));
+      }
+      const results = await axios.all(arr);
+      const [categories, editItem] = results;
+      if (id) {
+        this.setState({
+          categories: flattenData(categories.data),
+          isLoading: false,
+          items: { ...this.state.items, [id]: editItem.data },
+        });
+      } else {
+        this.setState({
+          categories: flattenData(categories.data),
+          isLoading: false,
+        });
+      }
+
+      return {
+        categories: flattenData(categories.data),
+        editItem: editItem && editItem.data,
+      };
     }),
     selectNewDate: this.withLoading(async (year, month) => {
       const getItemsForDateUrl = `/items?monthCategory=${year}-${month}&_sort=timestamp&_order=desc`;
@@ -99,10 +120,6 @@ class App extends Component {
       });
     },
   };
-
-  componentDidMount() {
-    this.actions.getInitialData();
-  }
 
   render() {
     return (

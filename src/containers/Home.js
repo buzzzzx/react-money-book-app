@@ -77,7 +77,7 @@ class Home extends Component {
             </div>
           </div>
         </header>
-        <div class="content-area py-3 px-3">
+        <div className="content-area py-3 px-3">
           {isLoading ? (
             <Loader />
           ) : (

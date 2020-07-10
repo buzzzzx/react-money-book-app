@@ -5,10 +5,6 @@ class CategorySelect extends Component {
   handlecategorySelect = (event, categroy) => {
     event.preventDefault();
 
-    this.setState({
-      selectedCategoryId: categroy.id,
-    });
-
     this.props.onSelectCategory(categroy);
   };
 

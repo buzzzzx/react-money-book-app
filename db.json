@@ -97,6 +97,15 @@
       "id": "_kly1klf4g11",
       "cid": "1",
       "timestamp": 1534291200000
+    },
+    {
+      "title": "基金收入",
+      "price": 500,
+      "date": "2020-07-10",
+      "monthCategory": "2020-7",
+      "id": "_klydsa4g11",
+      "cid": "12",
+      "timestamp": 1594357270701
     }
   ]
 }
