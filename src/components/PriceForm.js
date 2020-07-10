@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+import PropTypes from "prop-types";
 
 class PriceForm extends Component {
   static defaultProps = {
@@ -115,5 +116,11 @@ class PriceForm extends Component {
     );
   }
 }
+
+PriceForm.propTypes = {
+  onFormSubmit: PropTypes.func.isRequired,
+  onCancelSubmit: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired,
+};
 
 export default PriceForm;

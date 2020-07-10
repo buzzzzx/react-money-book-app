@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import logo from "../logo.svg";
 import PriceList from "../components/PriceList";
@@ -104,5 +105,10 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  data: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+};
 
 export default withContext(Home);

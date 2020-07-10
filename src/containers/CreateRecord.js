@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
+import PropTypes from "prop-types";
 
 import CategoryViewTab from "../components/CategoryViewTab";
 import CategorySelect from "../components/CategorySelect";
@@ -119,5 +120,10 @@ class CreateRecord extends Component {
     );
   }
 }
+
+CreateRecord.propTypes = {
+  data: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+};
 
 export default withContext(CreateRecord);

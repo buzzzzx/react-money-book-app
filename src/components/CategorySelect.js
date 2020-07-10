@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Ionicon from "react-ionicons";
+import PropTypes from "prop-types";
 
 class CategorySelect extends Component {
   handlecategorySelect = (event, categroy) => {
@@ -50,5 +51,11 @@ class CategorySelect extends Component {
     );
   }
 }
+
+CategorySelect.propTypes = {
+  categories: PropTypes.array.isRequired,
+  selectedCategory: PropTypes.object.isRequired,
+  onSelectCategory: PropTypes.func.isRequired,
+};
 
 export default CategorySelect;

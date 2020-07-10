@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 import Ionicon from "react-ionicons";
 
-const CreateBtn = ({ onClick }) => (
+const CreateBtn = () => (
   <Link to="create" className="btn btn-primary btn-lg btn-block my-4">
     <Ionicon
       className="rounded-circle mr-2"
