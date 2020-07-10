@@ -58,12 +58,19 @@ class CreateRecord extends Component {
 
     if (!isEditMode) {
       // create data
-      this.props.actions.createItem(data, this.state.selectedCategory.id);
+      this.props.actions
+        .createItem(data, this.state.selectedCategory.id)
+        .then(() => {
+          navigate("/");
+        });
     } else {
       // udpdate data
-      this.props.actions.updateItem(data, this.state.selectedCategory.id);
+      this.props.actions
+        .updateItem(data, this.state.selectedCategory.id)
+        .then(() => {
+          navigate("/");
+        });
     }
-    navigate("/");
   };
 
   render() {

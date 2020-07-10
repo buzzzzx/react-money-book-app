@@ -40,6 +40,7 @@ class Home extends Component {
     const { items, categories, currentDate, isLoading } = data;
 
     const { tabView } = this.state;
+    const tabIndex = tabViews.findIndex((text) => text === tabView);
     const itemsWithCategory = Object.keys(items).map((id) => {
       items[id].category = categories[items[id].cid];
       return items[id];
@@ -83,7 +84,7 @@ class Home extends Component {
           ) : (
             <>
               <CreateBtn />
-              <ViewTab activeIndex={0} onTabChange={this.changeView} />
+              <ViewTab activeIndex={tabIndex} onTabChange={this.changeView} />
               {tabView === LIST_VIEW &&
                 (itemsWithCategory.length > 0 ? (
                   <PriceList
