@@ -13,6 +13,7 @@ describe("test <CreateBtn />", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  // TODO: need to test with Link of @reach/router
   // it("should trigger the correct callback", () => {
   //   const wrapper = shallow(<CreateBtn {...props} />);
   //   wrapper.find("button").simulate("click");

@@ -47,8 +47,8 @@ export const testItems = [
   {
     title: "buy stuff for kitten",
     price: 100,
-    date: "2020-08-15",
-    monthCategory: "2020-8",
+    date: "2020-07-15",
+    monthCategory: "2020-7",
     id: "_kly1klf4g",
     cid: "1",
     timestamp: 1534291200000,

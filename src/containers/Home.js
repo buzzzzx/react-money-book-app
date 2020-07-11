@@ -13,7 +13,7 @@ import Loader from "../components/Loader";
 
 const tabViews = [LIST_VIEW, CHART_VIEW];
 
-class Home extends Component {
+export class Home extends Component {
   state = {
     tabView: tabViews[0],
   };

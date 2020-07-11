@@ -7,10 +7,11 @@ import CategorySelect from "../components/CategorySelect";
 import PriceForm from "../components/PriceForm";
 import { TYPE_INCOME, TYPE_OUTCOME } from "../utility";
 import withContext from "../withContext";
+import Loader from "../components/Loader";
 
 const tabViews = [TYPE_OUTCOME, TYPE_INCOME];
 
-class CreateRecord extends Component {
+export class CreateRecord extends Component {
   editItem = this.props.id && this.props.data.items[this.props.id];
   state = {
     tabView: this.editItem
@@ -75,10 +76,10 @@ class CreateRecord extends Component {
   };
 
   render() {
-    const { data } = this.props;
-    const { items, categories } = data;
+    const { id, data } = this.props;
+    const { items, categories, isLoading } = data;
 
-    const editItem = this.props.id && items[this.props.id];
+    const editItem = id && items[id] ? items[id] : {};
 
     const { tabView, selectedCategory, validationPassed } = this.state;
 
@@ -97,24 +98,30 @@ class CreateRecord extends Component {
         className="create-page py-5 px-3 rounded"
         style={{ background: "#fff" }}
       >
-        <CategoryViewTab
-          activeIndex={tabViewIndex}
-          onTabChange={this.onTabChange}
-        />
-        <CategorySelect
-          categories={filterCategories}
-          selectedCategory={selectedCategory}
-          onSelectCategory={this.onSelectCategory}
-        />
-        <PriceForm
-          onFormSubmit={this.onFormSubmit}
-          onCancelSubmit={this.onCancelSubmit}
-          item={editItem}
-        />
-        {!validationPassed && (
-          <div className="alert alert-danger mt-5" role="alert">
-            请选择分类信息
-          </div>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <CategoryViewTab
+              activeIndex={tabViewIndex}
+              onTabChange={this.onTabChange}
+            />
+            <CategorySelect
+              categories={filterCategories}
+              selectedCategory={selectedCategory}
+              onSelectCategory={this.onSelectCategory}
+            />
+            <PriceForm
+              onFormSubmit={this.onFormSubmit}
+              onCancelSubmit={this.onCancelSubmit}
+              item={editItem}
+            />
+            {!validationPassed && (
+              <div className="alert alert-danger mt-5" role="alert">
+                请选择分类信息
+              </div>
+            )}
+          </>
         )}
       </div>
     );
@@ -124,6 +131,7 @@ class CreateRecord extends Component {
 CreateRecord.propTypes = {
   data: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
+  id: PropTypes.string,
 };
 
 export default withContext(CreateRecord);

@@ -47,6 +47,7 @@ describe("test <PriceList />", () => {
     const firstItem = wrapper.find(".list-group-item").first();
     // trigger modify event on first price item
     firstItem.find(Link).simulate("click");
+    // TODO: need to test with Link of @reach/router
     // expect(props.onModifyItem).toHaveBeenCalledWith(props.items[0]);
     // trigger delete event on first price item
     firstItem.find("a").first().simulate("click");
