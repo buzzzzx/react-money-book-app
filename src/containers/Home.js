@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import logo from "../logo.svg";
 import PriceList from "../components/PriceList";
+import PriceChart from "../components/PriceChart";
 import ViewTab from "../components/ViewTab";
 import { LIST_VIEW, CHART_VIEW } from "../utility";
 import TotalPrice from "../components/TotalPrice";
@@ -97,7 +98,9 @@ export class Home extends Component {
                     您还没有任何记账记录
                   </div>
                 ))}
-              {tabView === CHART_VIEW && <h2>Hello, this is chart view.</h2>}
+              {tabView === CHART_VIEW && (
+                <PriceChart items={itemsWithCategory} />
+              )}
             </>
           )}
         </div>

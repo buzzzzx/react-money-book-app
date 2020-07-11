@@ -50,8 +50,14 @@
       "date": "2020-08-15",
       "monthCategory": "2020-8",
       "id": "_kly1klf4g",
-      "cid": "1",
-      "timestamp": 1534291200000
+      "cid": "3",
+      "timestamp": 1597449600000,
+      "category": {
+        "name": "旅行",
+        "iconName": "ios-plane",
+        "id": "1",
+        "type": "outcome"
+      }
     },
     {
       "title": "工资到账",
@@ -115,6 +121,33 @@
       "monthCategory": "2020-7",
       "cid": "3",
       "timestamp": 1594080000000
+    },
+    {
+      "title": "工资到账",
+      "price": 20000,
+      "date": "2020-07-11",
+      "id": "_5v8lovmsr",
+      "monthCategory": "2020-7",
+      "cid": "10",
+      "timestamp": 1594425600000
+    },
+    {
+      "title": "购买 Nintendo Switch",
+      "price": 2500,
+      "date": "2020-07-12",
+      "id": "_fdwd4c295",
+      "monthCategory": "2020-7",
+      "cid": "4",
+      "timestamp": 1594512000000
+    },
+    {
+      "title": "购买 HHKB",
+      "price": 2300,
+      "date": "2020-07-20",
+      "id": "_3nsgikskt",
+      "monthCategory": "2020-7",
+      "cid": "4",
+      "timestamp": 1595203200000
     }
   ]
 }
