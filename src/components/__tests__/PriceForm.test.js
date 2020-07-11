@@ -2,7 +2,12 @@ import React from "react";
 import { mount } from "enzyme";
 
 import PriceForm from "../PriceForm";
-import { testItem } from "../../utility";
+
+const testItem = {
+  title: "buy a phone",
+  price: 4000,
+  date: "2020-07-07",
+};
 
 const props = {
   onFormSubmit: jest.fn(),
@@ -54,7 +59,7 @@ describe("test <PriceForm />", () => {
 
     it("submit form with empty input should show alert message", () => {
       wrapperCreate.find("form").simulate("submit");
-      expect(formInstance.state.validatePass).toEqual(false);
+      expect(formInstance.state.validationPassed).toEqual(false);
       expect(wrapperCreate.find(".alert").length).toEqual(1);
       expect(props.onFormSubmit).not.toHaveBeenCalled();
     });
@@ -78,7 +83,7 @@ describe("test <PriceForm />", () => {
         date: "2020-07-07",
       };
       wrapperCreate.find("form").simulate("submit");
-      expect(formInstance.state.validatePass).toEqual(true);
+      expect(formInstance.state.validationPassed).toEqual(true);
       expect(wrapperCreate.find(".alert").length).toEqual(0);
       expect(props.onFormSubmit).toHaveBeenCalledWith(newItem, false);
     });
@@ -107,7 +112,7 @@ describe("test <PriceForm />", () => {
         price: 2300,
       };
       wrapperEdit.find("form").simulate("submit");
-      expect(formInstance.state.validatePass).toEqual(true);
+      expect(formInstance.state.validationPassed).toEqual(true);
       expect(wrapperCreate.find(".alert").length).toEqual(0);
       expect(propsWithItem.onFormSubmit).toHaveBeenCalledWith(
         changedItem,

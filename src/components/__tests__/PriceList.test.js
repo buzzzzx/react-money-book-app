@@ -1,18 +1,20 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Ionicon from "react-ionicons";
+import { Link } from "@reach/router";
 
 import PriceList from "../PriceList";
-import { category, testItems } from "../../containers/Home";
+import { flattenData } from "../../utility";
+import { testCategories, testItems } from "../../testData";
 
+const categories = flattenData(testCategories);
 const itemsWithCategory = testItems.map((item) => {
-  item.category = category[item.cid];
+  item.category = categories[item.cid];
   return item;
 });
 
 const props = {
   items: itemsWithCategory,
-  onModifyItem: jest.fn(),
   onDeleteItem: jest.fn(),
 };
 
@@ -44,10 +46,10 @@ describe("test <PriceList />", () => {
   it("should trigger the correct callback", () => {
     const firstItem = wrapper.find(".list-group-item").first();
     // trigger modify event on first price item
-    firstItem.find("a").first().simulate("click");
-    expect(props.onModifyItem).toHaveBeenCalledWith(props.items[0]);
+    firstItem.find(Link).simulate("click");
+    // expect(props.onModifyItem).toHaveBeenCalledWith(props.items[0]);
     // trigger delete event on first price item
-    firstItem.find("a").last().simulate("click");
+    firstItem.find("a").first().simulate("click");
     expect(props.onDeleteItem).toHaveBeenCalledWith(props.items[0]);
   });
 });

@@ -58,17 +58,19 @@ describe("test <CategorySelect />", () => {
 
   it("click item should trigger callback", () => {
     const wrapper = mount(<CategorySelect {...propsWithSelected} />);
-    wrapper.find(".category-item").at(1).simulate("click");
-    expect(wrapper.find(".category-item").at(1).hasClass("active")).toEqual(
+    expect(wrapper.find(".category-item").at(0).hasClass("active")).toEqual(
       true
     );
-    expect(wrapper.find(".category-item").at(0).hasClass("active")).toEqual(
-      false
-    );
-    expect(wrapper.state().selectedCategory).toEqual(categories[1].id);
-
+    wrapper.find(".category-item").at(1).simulate("click");
     expect(propsWithSelected.onSelectCategory).toHaveBeenCalledWith(
       categories[1]
     );
+    // expect(wrapper.find(".category-item").at(1).hasClass("active")).toEqual(
+    //   true
+    // );
+    // expect(wrapper.find(".category-item").at(0).hasClass("active")).toEqual(
+    //   false
+    // );
+    // expect(wrapper.props().selectedCategory.id).toEqual(categories[1].id);
   });
 });

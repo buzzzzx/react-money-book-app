@@ -1,18 +1,17 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 
 import ViewTab from "../ViewTab";
-import { LIST_VIEW, CHART_VIEW } from "../../utility";
 
 const props = {
-  activeTab: LIST_VIEW,
+  activeIndex: 0,
   onTabChange: jest.fn(),
 };
 
 let wrapper;
 describe("test <ViewTab />", () => {
   beforeEach(() => {
-    wrapper = shallow(<ViewTab {...props} />);
+    wrapper = mount(<ViewTab {...props} />);
   });
 
   it("should render component to match the snapshot", () => {
@@ -29,8 +28,8 @@ describe("test <ViewTab />", () => {
     const chartViewTab = wrapper.find(".nav-item").last();
 
     chartViewTab.find("a").simulate("click", fakeEvent);
-    expect(props.onTabChange).toHaveBeenCalledWith(CHART_VIEW);
+    expect(props.onTabChange).toHaveBeenCalledWith(1);
     listViewTab.find("a").simulate("click", fakeEvent);
-    expect(props.onTabChange).toHaveBeenCalledWith(LIST_VIEW);
+    expect(props.onTabChange).toHaveBeenCalledWith(0);
   });
 });
