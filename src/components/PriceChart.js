@@ -27,8 +27,6 @@ const generateDataByCategory = (items, type) => {
 const PriceChart = ({ items }) => {
   const incomeData = generateDataByCategory(items, TYPE_INCOME);
   const outcomeData = generateDataByCategory(items, TYPE_OUTCOME);
-  console.log(incomeData);
-  console.log(outcomeData);
 
   return (
     <div className="price-chart-component">
