@@ -78,7 +78,7 @@ class MonthPicker extends Component {
               <div className="col border-right years-range">
                 {yearRange.map((yearNum, index) => (
                   <a
-                    href="#"
+                    href="/#"
                     className={this.generateActiveClass(yearNum, selectedYear)}
                     key={index}
                     onClick={(event) => this.selectYear(event, yearNum)}
@@ -90,7 +90,7 @@ class MonthPicker extends Component {
               <div className="col months-range">
                 {monthRange.map((monthNum, index) => (
                   <a
-                    href="#"
+                    href="/#"
                     className={this.generateActiveClass(
                       monthNum,
                       selectedMonth

@@ -34,7 +34,7 @@ const PriceList = ({ items, onDeleteItem }) => (
             icon="ios-create-outline"
           />
         </Link>
-        <a className="col-1" onClick={() => onDeleteItem(item)}>
+        <a href="/#" className="col-1" onClick={() => onDeleteItem(item)}>
           <Ionicon
             className="rounded-circle"
             fontSize="30px"

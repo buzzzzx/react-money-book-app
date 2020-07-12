@@ -19,7 +19,7 @@ export class Tabs extends Component {
           return (
             <li className="nav-item" key={index}>
               <a
-                href="#"
+                href="/#"
                 className={activeClassName}
                 onClick={(event) => this.changeTab(event, index)}
               >
